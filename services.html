@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services & Tracking | VivanX Shop</title>
+  <meta name="description" content="Discover VivanX Shop premium services: live package tracking, global express dispatch, buyer safeguards, and hassle-free returns.">
+  <link rel="canonical" href="https://yourdomain.com/services.html">
+  <meta property="og:title" content="Services & Tracking | VivanX Shop">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(circle at 10% 20%, rgba(238, 242, 255, 0.9) 0%, rgba(245, 243, 255, 0.7) 40%, rgba(250, 250, 255, 1) 100%);
+      min-height: 100vh;
+      color: #1e1b4b;
+    }
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05), 0 0 0 1px rgba(226, 232, 240, 0.6);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 35px -8px rgba(79, 70, 229, 0.12), 0 0 0 1px rgba(99, 102, 241, 0.2);
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen antialiased">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 w-full glass-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center text-white shadow-lg">
+            <i class="fa-solid fa-bag-shopping text-xl"></i>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-2xl font-black tracking-tight font-display text-slate-900">VivanX<span class="text-indigo-600">.</span></span>
+            <span class="text-[10px] uppercase font-bold tracking-widest text-indigo-500/80 -mt-1">Modern Shop</span>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+          <a href="index.html" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-indigo-600 hover:bg-indigo-50/70 transition-all">Home</a>
+          <a href="about.html" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-indigo-600 hover:bg-indigo-50/70 transition-all">About</a>
+          <a href="services.html" class="px-3.5 py-2 rounded-xl text-sm font-semibold bg-indigo-50 text-indigo-600">Services</a>
+          <a href="contact.html" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-indigo-600 hover:bg-indigo-50/70 transition-all">Contact</a>
+          <a href="privacy-policy.html" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-indigo-600 hover:bg-indigo-50/70 transition-all">Privacy</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <button onclick="toggleCartDrawer(true)" class="relative p-2.5 rounded-xl bg-white border border-slate-200 text-slate-800 hover:text-indigo-600 transition-all">
+            <i class="fa-solid fa-cart-shopping text-lg"></i>
+            <span id="cartBadge" class="absolute -top-1.5 -right-1.5 bg-gradient-to-r from-pink-500 to-rose-600 text-white font-bold text-[10px] min-w-[20px] h-[20px] rounded-full flex items-center justify-center px-1 shadow-sm">0</span>
+          </button>
+          <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-white border border-slate-200 text-slate-800">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white/95 px-4 pt-3 pb-6 space-y-2">
+      <a href="index.html" class="block px-4 py-2 rounded-xl text-sm font-medium text-slate-800">Home</a>
+      <a href="about.html" class="block px-4 py-2 rounded-xl text-sm font-medium text-slate-800">About Us</a>
+      <a href="services.html" class="block px-4 py-2 rounded-xl text-sm font-medium bg-indigo-50 text-indigo-600">Services & Tracking</a>
+      <a href="contact.html" class="block px-4 py-2 rounded-xl text-sm font-medium text-slate-800">Contact</a>
+      <a href="privacy-policy.html" class="block px-4 py-2 rounded-xl text-sm font-medium text-slate-800">Privacy Policy</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow py-16 sm:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100">Premium Services</span>
+        <h1 class="text-4xl sm:text-5xl font-black text-slate-900 font-display">Crafted For Seamless Convenience</h1>
+        <p class="text-slate-600 text-base leading-relaxed">
+          Explore our full suite of shopping services, global delivery options, buyer safeguards, and live order tracking.
+        </p>
+      </div>
+
+      <!-- Live Order Tracker -->
+      <div class="glass-card rounded-3xl p-6 sm:p-10 border border-indigo-200/60 shadow-xl max-w-4xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Live Tracker
+            </span>
+            <h3 class="text-2xl font-black text-slate-900 font-display mt-1">Track Your Order Live</h3>
+            <p class="text-xs text-slate-500">Enter your VivanX Tracking ID to view real-time status.</p>
+          </div>
+          <div class="flex items-center gap-1.5 text-xs text-slate-500">
+            <span>Try Demo:</span>
+            <button onclick="setTrackingCode('VX-98214')" class="px-2 py-1 rounded-md bg-indigo-50 text-indigo-600 font-bold">VX-98214</button>
+            <button onclick="setTrackingCode('VX-43109')" class="px-2 py-1 rounded-md bg-indigo-50 text-indigo-600 font-bold">VX-43109</button>
+          </div>
+        </div>
+
+        <form onsubmit="handleTrack(event)" class="flex flex-col sm:flex-row gap-3">
+          <div class="relative flex-1">
+            <input type="text" id="trackingInput" placeholder="e.g. VX-98214" value="VX-98214" required class="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+          </div>
+          <button type="submit" class="px-7 py-3 rounded-xl bg-indigo-600 text-white font-bold text-sm hover:bg-indigo-700 transition-all flex items-center justify-center gap-2">
+            <i class="fa-solid fa-radar"></i>
+            <span>Track Package</span>
+          </button>
+        </form>
+
+        <div id="trackingResult" class="mt-8 pt-8 border-t border-slate-200/80">
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+            <div>
+              <div class="text-xs text-slate-400 uppercase font-semibold">Tracking Number</div>
+              <div class="text-base font-bold text-slate-900" id="resCode">VX-98214</div>
+            </div>
+            <div>
+              <div class="text-xs text-slate-400 uppercase font-semibold">Estimated Arrival</div>
+              <div class="text-base font-bold text-indigo-600" id="resEta">Tomorrow by 4:00 PM</div>
+            </div>
+            <div>
+              <div class="text-xs text-slate-400 uppercase font-semibold">Carrier</div>
+              <div class="text-base font-bold text-slate-800">VivanX Express Priority</div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="flex flex-col items-center text-center p-3 rounded-xl bg-indigo-50 border border-indigo-100">
+              <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs mb-2"><i class="fa-solid fa-check"></i></div>
+              <span class="text-xs font-bold text-slate-900">Order Placed</span>
+              <span class="text-[10px] text-slate-500">Confirmed</span>
+            </div>
+            <div class="flex flex-col items-center text-center p-3 rounded-xl bg-indigo-50 border border-indigo-100">
+              <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs mb-2"><i class="fa-solid fa-check"></i></div>
+              <span class="text-xs font-bold text-slate-900">Processing</span>
+              <span class="text-[10px] text-slate-500">Quality Checked</span>
+            </div>
+            <div class="flex flex-col items-center text-center p-3 rounded-xl bg-indigo-100 border border-indigo-300">
+              <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs mb-2 animate-bounce"><i class="fa-solid fa-truck"></i></div>
+              <span class="text-xs font-bold text-indigo-900">In Transit</span>
+              <span class="text-[10px] text-indigo-600 font-semibold">Out for delivery</span>
+            </div>
+            <div class="flex flex-col items-center text-center p-3 rounded-xl bg-slate-50 border border-slate-200 opacity-60">
+              <div class="w-8 h-8 rounded-full bg-slate-300 text-white flex items-center justify-center text-xs mb-2"><i class="fa-solid fa-box"></i></div>
+              <span class="text-xs font-bold text-slate-700">Delivered</span>
+              <span class="text-[10px] text-slate-400">Signature required</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Services 8-Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="glass-card rounded-2xl p-6 space-y-2">
+          <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg"><i class="fa-solid fa-plane-departure"></i></div>
+          <h4 class="text-base font-bold text-slate-900">Global Express</h4>
+          <p class="text-xs text-slate-500 leading-relaxed">Air shipping to over 85 countries with full customs pre-clearance.</p>
+        </div>
+        <div class="glass-card rounded-2xl p-6 space-y-2">
+          <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg"><i class="fa-solid fa-shield-halved"></i></div>
+          <h4 class="text-base font-bold text-slate-900">Buyer Protection</h4>
+          <p class="text-xs text-slate-500 leading-relaxed">Full refund if items do not arrive as described or damaged in transit.</p>
+        </div>
+        <div class="glass-card rounded-2xl p-6 space-y-2">
+          <div class="w-12 h-12 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center text-lg"><i class="fa-solid fa-arrow-rotate-left"></i></div>
+          <h4 class="text-base font-bold text-slate-900">Prepaid Returns</h4>
+          <p class="text-xs text-slate-500 leading-relaxed">Download a printable return label in 1 click from your account.</p>
+        </div>
+        <div class="glass-card rounded-2xl p-6 space-y-2">
+          <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-lg"><i class="fa-solid fa-comments"></i></div>
+          <h4 class="text-base font-bold text-slate-900">VIP Concierge</h4>
+          <p class="text-xs text-slate-500 leading-relaxed">Personal shopping assistance and tech configuration recommendations.</p>
+        </div>
+        <div class="glass-card rounded-2xl p-6 space-y-2">
+          <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg"><i class="fa-solid fa-credit-card"></i></div>
+          <h4 class="text-base font-bold text-slate-900">Split In 4 Payments</h4>
+          <p class="text-xs text-slate-500 leading-relaxed">Zero percent interest installment options available at checkout.</p>
+        </div>
+        <div class="glass-card rounded-2xl p-6 space-y-2">
+          <div class="w-12 h-12 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-lg"><i class="fa-solid fa-leaf"></i></div>
+          <h4 class="text-base font-bold text-slate-900">Eco-Friendly Packs</h4>
+          <p class="text-xs text-slate-500 leading-relaxed">100% biodegradable and recyclable soy-ink shipping cartons.</p>
+        </div>
+        <div class="glass-card rounded-2xl p-6 space-y-2">
+          <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg"><i class="fa-solid fa-certificate"></i></div>
+          <h4 class="text-base font-bold text-slate-900">1-Year Warranty</h4>
+          <p class="text-xs text-slate-500 leading-relaxed">Standard 12-month manufacturer replacement policy on electronics.</p>
+        </div>
+        <div class="glass-card rounded-2xl p-6 space-y-2">
+          <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-lg"><i class="fa-solid fa-gift"></i></div>
+          <h4 class="text-base font-bold text-slate-900">Gift Packaging</h4>
+          <p class="text-xs text-slate-500 leading-relaxed">Custom luxury ribbon wrapping with personalized greetings card.</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="glass-nav border-t border-slate-200/80 mt-20 pt-12 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500">
+      <p>© 2026 VivanX Shop. All rights reserved. Express Tracked Shipping Worldwide.</p>
+    </div>
+  </footer>
+
+  <script>
+    function setTrackingCode(code) {
+      document.getElementById('trackingInput').value = code;
+      track(code);
+    }
+    function handleTrack(e) {
+      e.preventDefault();
+      track(document.getElementById('trackingInput').value.trim());
+    }
+    function track(code) {
+      if(!code) return;
+      document.getElementById('resCode').innerText = code.toUpperCase();
+      const times = ["Tomorrow by 3:30 PM", "In 2 Business Days", "Today by 6:00 PM"];
+      document.getElementById('resEta').innerText = times[Math.floor(Math.random() * times.length)];
+      alert(`Package status refreshed for #${code}`);
+    }
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    }
+    function updateBadge() {
+      try {
+        const cart = JSON.parse(localStorage.getItem('vivanx_cart')) || [];
+        const count = cart.reduce((sum, i) => sum + i.quantity, 0);
+        document.getElementById('cartBadge').innerText = count;
+      } catch(e) {}
+    }
+    document.addEventListener('DOMContentLoaded', updateBadge);
+  </script>
+</body>
+</html>
