@@ -1,0 +1,2120 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VivanX Shop | Everything You Love, All in One Place</title>
+  <meta name="description" content="VivanX Shop is your ultimate modern destination for premium electronics, designer fashion, athletic shoes, smart gadgets, and contemporary home decor.">
+  <meta name="keywords" content="VivanX Shop, e-commerce, online shopping, electronics, fashion, footwear, smart gadgets, premium lifestyle">
+  <meta name="author" content="VivanX Shop Team">
+  <link rel="canonical" href="https://yourdomain.com/">
+  
+  <meta property="og:title" content="VivanX Shop | Premium E-Commerce Experience">
+  <meta property="og:description" content="Discover hand-picked premium electronics, elevated fashion, designer shoes, and smart living essentials.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:url" content="https://yourdomain.com/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VivanX Shop | Everything You Love, All in One Place">
+  <meta name="twitter:description" content="Curated premium lifestyle, electronics, fashion & gadgets with express dispatch.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f5ff',
+              100: '#e5edff',
+              200: '#cddbfe',
+              500: '#4338ca',
+              600: '#4f46e5',
+              700: '#3730a3',
+            },
+            accent: {
+              teal: '#06b6d4',
+              coral: '#f43f5e',
+              amber: '#f59e0b',
+              emerald: '#10b981',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --glass-bg: rgba(255, 255, 255, 0.72);
+      --glass-border: rgba(255, 255, 255, 0.45);
+      --glass-shadow: 0 16px 36px -10px rgba(79, 70, 229, 0.12), 0 0 1px 1px rgba(255, 255, 255, 0.8);
+      --card-radius: 1.25rem;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(circle at 10% 20%, rgba(238, 242, 255, 0.9) 0%, rgba(245, 243, 255, 0.7) 40%, rgba(250, 250, 255, 1) 100%);
+      min-height: 100vh;
+      color: #1e1b4b;
+      overflow-x: hidden;
+    }
+
+    /* Ambient background gradient bubbles */
+    .ambient-glow {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+      animation: float 20s infinite alternate ease-in-out;
+    }
+
+    .ambient-1 {
+      top: -100px;
+      right: -100px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+    }
+
+    .ambient-2 {
+      bottom: 10%;
+      left: -150px;
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      animation-duration: 25s;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(60px, 80px) scale(1.12); }
+    }
+
+    /* Glassmorphism primitives */
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05), 0 0 0 1px rgba(226, 232, 240, 0.6);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 35px -8px rgba(79, 70, 229, 0.12), 0 0 0 1px rgba(99, 102, 241, 0.2);
+    }
+
+    .glass-pill {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    .page-section {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+  </style>
+</head>
+<body class="relative min-h-screen flex flex-col antialiased">
+  <div class="ambient-glow ambient-1"></div>
+  <div class="ambient-glow ambient-2"></div>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scrollProgressBar" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-50 transition-all duration-100" style="width: 0%"></div>
+
+  <!-- Announcement Bar -->
+  <div class="bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-700 text-white text-xs sm:text-sm font-medium py-2 px-4 text-center tracking-wide z-40 relative flex items-center justify-center gap-2">
+    <span class="inline-block px-2 py-0.5 bg-white/20 rounded-full text-[11px] font-semibold uppercase tracking-wider">Special</span>
+    <span>Use code <span class="font-extrabold tracking-wider underline cursor-pointer" onclick="applyPromoCode('VIVANX10')">VIVANX10</span> for 10% instant discount across all categories!</span>
+    <button onclick="this.parentElement.style.display='none'" class="ml-2 hover:opacity-75 text-white/80 p-1" aria-label="Close Announcement"><i class="fa-solid fa-xmark text-xs"></i></button>
+  </div>
+
+  <header class="sticky top-0 z-40 w-full glass-nav transition-all duration-300" id="mainHeader">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo -->
+        <a href="#home" class="flex items-center gap-3 group focus:outline-none" onclick="navigateTo('home')">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform duration-300">
+            <i class="fa-solid fa-bag-shopping text-xl"></i>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-2xl font-black tracking-tight font-display bg-gradient-to-r from-indigo-900 via-indigo-800 to-purple-800 bg-clip-text text-transparent">VivanX<span class="text-indigo-600">.</span></span>
+            <span class="text-[10px] uppercase font-bold tracking-widest text-indigo-500/80 -mt-1">Modern Shop</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+          <a href="#home" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-indigo-600 hover:bg-indigo-50/70 transition-all duration-200" data-page="home">Home</a>
+          <a href="#about" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-indigo-600 hover:bg-indigo-50/70 transition-all duration-200" data-page="about">About</a>
+          <a href="#services" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-indigo-600 hover:bg-indigo-50/70 transition-all duration-200" data-page="services">Services</a>
+          <a href="#contact" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-indigo-600 hover:bg-indigo-50/70 transition-all duration-200" data-page="contact">Contact</a>
+          <a href="#privacy" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-indigo-600 hover:bg-indigo-50/70 transition-all duration-200" data-page="privacy">Privacy</a>
+        </nav>
+
+        <!-- Search Bar and Action Buttons -->
+        <div class="flex items-center gap-3 sm:gap-4">
+          <!-- Quick Search in Navbar -->
+          <div class="relative hidden sm:block w-48 lg:w-64">
+            <input type="text" id="navbarSearchInput" placeholder="Search products..." class="w-full pl-9 pr-4 py-2 text-sm rounded-full bg-slate-100/90 border border-slate-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500 transition-all">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+          </div>
+
+          
+
+          <!-- Cart Trigger Button -->
+          <button id="cartButton" onclick="toggleCartDrawer(true)" class="relative p-2.5 rounded-xl bg-white border border-slate-200 text-slate-800 hover:text-indigo-600 hover:border-indigo-300 hover:shadow-md transition-all duration-200 group">
+            <i class="fa-solid fa-cart-shopping text-lg group-hover:scale-110 transition-transform"></i>
+            <span id="cartBadge" class="absolute -top-1.5 -right-1.5 bg-gradient-to-r from-pink-500 to-rose-600 text-white font-bold text-[10px] min-w-[20px] h-[20px] rounded-full flex items-center justify-center px-1 shadow-sm transition-all duration-300">0</span>
+          </button>
+
+          <!-- Mobile Hamburger Menu Button -->
+          <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-white border border-slate-200 text-slate-800 hover:text-indigo-600 transition-all" aria-label="Toggle Navigation">
+            <i id="mobileMenuIcon" class="fa-solid fa-bars text-lg"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white/95 backdrop-blur-xl px-4 pt-3 pb-6 space-y-2 shadow-2xl transition-all">
+      <div class="mb-3">
+        <div class="relative">
+          <input type="text" id="mobileSearchInput" placeholder="Search products..." class="w-full pl-9 pr-4 py-2.5 text-sm rounded-xl bg-slate-100 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+        </div>
+      </div>
+      <a href="#home" onclick="navigateTo('home'); toggleMobileMenu(false);" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-800 hover:bg-indigo-50 hover:text-indigo-600">Home</a>
+      <a href="#about" onclick="navigateTo('about'); toggleMobileMenu(false);" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-800 hover:bg-indigo-50 hover:text-indigo-600">About Us</a>
+      <a href="#services" onclick="navigateTo('services'); toggleMobileMenu(false);" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-800 hover:bg-indigo-50 hover:text-indigo-600">Services & Tracking</a>
+      <a href="#contact" onclick="navigateTo('contact'); toggleMobileMenu(false);" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-800 hover:bg-indigo-50 hover:text-indigo-600">Contact</a>
+      <a href="#privacy" onclick="navigateTo('privacy'); toggleMobileMenu(false);" class="block px-4 py-2.5 rounded-xl text-base font-medium text-slate-800 hover:bg-indigo-50 hover:text-indigo-600">Privacy Policy</a>
+      <div class="pt-2 border-t border-slate-100 flex flex-col gap-2">
+        <button onclick="downloadProjectZip(); toggleMobileMenu(false);" class="w-full py-2.5 px-4 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl text-white text-sm font-bold flex items-center justify-center gap-2 shadow-sm">
+          <i class="fa-solid fa-file-zipper"></i> Download ZIP (All 9 Files)
+        </button>
+        <button onclick="openFileViewerModal(); toggleMobileMenu(false);" class="w-full py-2.5 px-4 bg-indigo-50 border border-indigo-200 rounded-xl text-indigo-700 text-sm font-semibold flex items-center justify-center gap-2">
+          <i class="fa-solid fa-folder-tree"></i> View Folder & Files
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- MAIN CONTENT: DYNAMIC MULTI-PAGE ROUTER    -->
+  <!-- ========================================== -->
+  <main class="flex-grow z-10">
+
+    <div id="page-home" class="page-section">
+      
+      <!-- HERO SECTION -->
+      <section class="relative overflow-hidden pt-12 pb-20 lg:pt-16 lg:pb-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Hero Left Content -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs sm:text-sm font-semibold shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-indigo-600 animate-ping"></span>
+                <span>✨ New Summer & Tech Drop 2026</span>
+              </div>
+              <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 font-display leading-[1.12]">
+                Everything You Love, <br class="hidden sm:inline">
+                <span class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-transparent">All in One Place.</span>
+              </h1>
+              <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                Discover hand-picked premium electronics, elevated modern fashion, designer footwear, and smart living essentials. Curated with authentic quality and priority dispatch.
+              </p>
+              
+              <!-- Hero Buttons -->
+              <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                <a href="#products-section" class="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-sm shadow-xl shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-2">
+                  <span>Shop Collection</span>
+                  <i class="fa-solid fa-arrow-down text-xs"></i>
+                </a>
+                <a href="#services" onclick="navigateTo('services')" class="px-7 py-3.5 rounded-2xl glass-card text-slate-800 font-bold text-sm hover:text-indigo-600 hover:border-indigo-300 transition-all flex items-center gap-2">
+                  <i class="fa-solid fa-truck-fast text-indigo-500"></i>
+                  <span>Track & Services</span>
+                </a>
+              </div>
+
+              <!-- Trust Stats -->
+              <div class="grid grid-cols-3 gap-4 pt-6 max-w-md mx-auto lg:mx-0 border-t border-slate-200/80">
+                <div>
+                  <div class="text-2xl font-black text-slate-900 font-display">25k+</div>
+                  <div class="text-xs text-slate-500 font-medium">Happy Shoppers</div>
+                </div>
+                <div>
+                  <div class="text-2xl font-black text-slate-900 font-display">4.9★</div>
+                  <div class="text-xs text-slate-500 font-medium">Verified Reviews</div>
+                </div>
+                <div>
+                  <div class="text-2xl font-black text-slate-900 font-display">24/7</div>
+                  <div class="text-xs text-slate-500 font-medium">Dedicated Care</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hero Right Showcase Illustration/Card -->
+            <div class="lg:col-span-5 relative">
+              <div class="relative mx-auto max-w-md lg:max-w-none">
+                <!-- Decorative backing blur -->
+                <div class="absolute -inset-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-3xl blur-2xl opacity-25 animate-pulse"></div>
+                
+                <!-- Main Glass Showcase Card -->
+                <div class="relative glass-card rounded-3xl p-6 overflow-hidden">
+                  <div class="relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-900 group">
+                    <img id="heroProductImage" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80" alt="VivanX Flagship Audio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex flex-col justify-end p-5 text-white">
+                      <span class="inline-block px-2.5 py-1 rounded-full bg-indigo-500/80 backdrop-blur-md text-[11px] font-bold uppercase tracking-wider w-max mb-1">Editor's Choice</span>
+                      <h3 class="text-xl font-bold font-display">AuraSound Pro Max Headphones</h3>
+                      <div class="flex items-center justify-between mt-2">
+                        <div class="flex items-center gap-2">
+                          <span class="text-2xl font-black text-white">$249.99</span>
+                          <span class="text-sm text-slate-300 line-through">$349.99</span>
+                        </div>
+                        <button onclick="quickAddToCart(1)" class="px-4 py-2 rounded-xl bg-white text-indigo-700 font-bold text-xs hover:bg-indigo-50 transition-all flex items-center gap-1.5 shadow-lg">
+                          <i class="fa-solid fa-cart-plus"></i> Add Now
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Floating Badge 1 -->
+                  <div class="absolute top-3 -left-3 glass-card rounded-2xl p-3 shadow-xl hidden sm:flex items-center gap-3 border border-white">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-base">
+                      <i class="fa-solid fa-shield-check"></i>
+                    </div>
+                    <div class="pr-2">
+                      <div class="text-xs font-bold text-slate-900">100% Authentic</div>
+                      <div class="text-[10px] text-slate-500">Verified Quality</div>
+                    </div>
+                  </div>
+
+                  <!-- Floating Badge 2 -->
+                  <div class="absolute -bottom-3 -right-3 glass-card rounded-2xl p-3 shadow-xl hidden sm:flex items-center gap-3 border border-white">
+                    <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-base">
+                      <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div class="pr-2">
+                      <div class="text-xs font-bold text-slate-900">Express Delivery</div>
+                      <div class="text-[10px] text-slate-500">Arrives in 48 Hours</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="py-6 border-y border-slate-200/60 bg-white/40 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-sm font-bold uppercase tracking-widest text-slate-500">Popular Categories</h2>
+            <span class="text-xs text-indigo-600 font-semibold cursor-pointer hover:underline" onclick="filterByCategory('All')">View All (12 Items)</span>
+          </div>
+          <div class="flex items-center gap-2 sm:gap-3 overflow-x-auto pb-2 scrollbar-none" id="categoryTabsContainer">
+            <!-- Dynamic Category Buttons injected via JS -->
+          </div>
+        </div>
+      </section>
+
+      <section id="products-section" class="py-14 sm:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <!-- Section Title & Filters Toolbar -->
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">Curated Catalog</span>
+              <h2 class="text-3xl sm:text-4xl font-black text-slate-900 font-display mt-2">Featured Products</h2>
+              <p class="text-slate-600 text-sm mt-1">Browse top-rated items with instant delivery and money-back guarantee.</p>
+            </div>
+
+            <!-- Sorting & Search Controls -->
+            <div class="flex flex-wrap items-center gap-3">
+              <div class="relative flex-1 sm:w-60">
+                <input type="text" id="liveSearchInput" placeholder="Filter by title..." class="w-full pl-9 pr-3 py-2.5 text-xs sm:text-sm rounded-xl bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              </div>
+
+              <!-- Sort Dropdown -->
+              <div class="relative">
+                <select id="sortBySelect" onchange="handleSortChange(this.value)" class="appearance-none bg-white border border-slate-200 text-slate-700 text-xs sm:text-sm font-semibold rounded-xl pl-3.5 pr-8 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 cursor-pointer">
+                  <option value="featured">Featured / Default</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="rating">Top Rated</option>
+                  <option value="discount">Highest Discount</option>
+                </select>
+                <i class="fa-solid fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+              </div>
+
+              <!-- Reset Button -->
+              <button onclick="resetFilters()" title="Reset Filters" class="p-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 text-sm">
+                <i class="fa-solid fa-rotate-left"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Product Cards Grid Container -->
+          <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+            <!-- Product cards will be injected by JavaScript -->
+          </div>
+
+          <!-- No Products Found Message -->
+          <div id="noProductsFound" class="hidden text-center py-16 glass-card rounded-3xl mt-8">
+            <div class="w-16 h-16 rounded-full bg-indigo-50 text-indigo-500 mx-auto flex items-center justify-center text-2xl mb-4">
+              <i class="fa-solid fa-box-open"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800">No matching products found</h3>
+            <p class="text-slate-500 text-sm mt-1 max-w-sm mx-auto">Try adjusting your search criteria or reset category filters to view our full collection.</p>
+            <button onclick="resetFilters()" class="mt-4 px-5 py-2.5 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700">Clear All Filters</button>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="py-16 bg-gradient-to-b from-transparent via-white/60 to-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">The VivanX Standard</span>
+            <h2 class="text-3xl font-black text-slate-900 font-display mt-3">Why Choose VivanX Shop?</h2>
+            <p class="text-slate-600 text-sm mt-2">We blend modern aesthetic curation with seamless, trustworthy customer-first shopping experiences.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Benefit 1 -->
+            <div class="glass-card rounded-2xl p-6 text-center group">
+              <div class="w-14 h-14 rounded-2xl bg-indigo-100 text-indigo-600 mx-auto flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                <i class="fa-solid fa-truck-fast"></i>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 mb-1">Free Express Delivery</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">Enjoy complimentary express tracked delivery on all eligible orders over $50.</p>
+            </div>
+
+            <!-- Benefit 2 -->
+            <div class="glass-card rounded-2xl p-6 text-center group">
+              <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300">
+                <i class="fa-solid fa-shield-heart"></i>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 mb-1">30-Day Easy Returns</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">Love it or return it. Seamless zero-question returns with instant refunds.</p>
+            </div>
+
+            <!-- Benefit 3 -->
+            <div class="glass-card rounded-2xl p-6 text-center group">
+              <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 mx-auto flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:bg-amber-600 group-hover:text-white transition-all duration-300">
+                <i class="fa-solid fa-lock"></i>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 mb-1">100% Secure Checkout</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">256-bit bank-grade encryption with industry certified buyer protection.</p>
+            </div>
+
+            <!-- Benefit 4 -->
+            <div class="glass-card rounded-2xl p-6 text-center group">
+              <div class="w-14 h-14 rounded-2xl bg-purple-100 text-purple-600 mx-auto flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300">
+                <i class="fa-solid fa-headset"></i>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 mb-1">24/7 Dedicated Care</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">Friendly support experts ready round the clock via chat, phone, and email.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">Community Feedback</span>
+            <h2 class="text-3xl font-black text-slate-900 font-display mt-3">What Our Customers Say</h2>
+            <p class="text-slate-600 text-sm mt-2">Over 25,000 verified buyers love shopping at VivanX.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Review 1 -->
+            <div class="glass-card rounded-2xl p-6 relative">
+              <div class="flex text-amber-400 text-xs mb-3">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text-slate-700 text-sm leading-relaxed mb-6">"The AuraSound Pro Max headphones arrived within two days. The audio clarity and noise cancellation exceeded my expectations. Beautiful packaging too!"</p>
+              <div class="flex items-center gap-3">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Sophia Chen" class="w-10 h-10 rounded-full object-cover">
+                <div>
+                  <h4 class="text-xs font-bold text-slate-900">Sophia Chen</h4>
+                  <span class="text-[11px] text-emerald-600 font-medium flex items-center gap-1"><i class="fa-solid fa-badge-check"></i> Verified Purchase</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="glass-card rounded-2xl p-6 relative">
+              <div class="flex text-amber-400 text-xs mb-3">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text-slate-700 text-sm leading-relaxed mb-6">"I ordered the SwiftStep runners and a minimalist watch. The sizing was spot on and customer support resolved my delivery inquiry in minutes."</p>
+              <div class="flex items-center gap-3">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Marcus Vance" class="w-10 h-10 rounded-full object-cover">
+                <div>
+                  <h4 class="text-xs font-bold text-slate-900">Marcus Vance</h4>
+                  <span class="text-[11px] text-emerald-600 font-medium flex items-center gap-1"><i class="fa-solid fa-badge-check"></i> Verified Purchase</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="glass-card rounded-2xl p-6 relative">
+              <div class="flex text-amber-400 text-xs mb-3">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text-slate-700 text-sm leading-relaxed mb-6">"VivanX has become my go-to shop for both wardrobe staples and smart desk gadgets. The glass UI makes shopping here such a joy!"</p>
+              <div class="flex items-center gap-3">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80" alt="Elena Rostova" class="w-10 h-10 rounded-full object-cover">
+                <div>
+                  <h4 class="text-xs font-bold text-slate-900">Elena Rostova</h4>
+                  <span class="text-[11px] text-emerald-600 font-medium flex items-center gap-1"><i class="fa-solid fa-badge-check"></i> Verified Purchase</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-700 via-purple-700 to-indigo-900 text-white p-8 sm:p-12 shadow-2xl">
+            <div class="relative z-10 max-w-2xl mx-auto text-center space-y-4">
+              <span class="inline-block px-3 py-1 rounded-full bg-white/20 text-xs font-bold uppercase tracking-wider">Join The VivanX Club</span>
+              <h2 class="text-3xl sm:text-4xl font-black font-display">Get 10% Off Your First Purchase</h2>
+              <p class="text-indigo-100 text-sm sm:text-base">Subscribe for exclusive flash drops, member-only discounts, and tech lifestyle tips.</p>
+              
+              <form onsubmit="handleNewsletterSubmit(event)" class="flex flex-col sm:flex-row gap-3 pt-2 max-w-md mx-auto">
+                <input type="email" id="newsletterEmail" placeholder="Enter your email address" required class="flex-1 px-4 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/30 text-white placeholder-indigo-200 text-sm focus:outline-none focus:ring-2 focus:ring-white">
+                <button type="submit" class="px-6 py-3 rounded-xl bg-white text-indigo-700 font-bold text-sm hover:bg-indigo-50 transition-all shadow-lg shadow-black/20">
+                  Claim Discount
+                </button>
+              </form>
+              <p class="text-[11px] text-indigo-200">No spam ever. Unsubscribe anytime with 1 click.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div> <!-- End Page Home -->
+
+    <div id="page-about" class="page-section hidden">
+      <section class="py-16 sm:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+          
+          <!-- About Hero -->
+          <div class="text-center max-w-3xl mx-auto space-y-4">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100">About VivanX Shop</span>
+            <h1 class="text-4xl sm:text-5xl font-black text-slate-900 font-display">Redefining Modern Online Shopping.</h1>
+            <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+              Founded with the vision to blend aesthetics, uncompromising quality, and frictionless accessibility. We connect design enthusiasts and everyday shoppers with items that inspire.
+            </p>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="glass-card rounded-2xl p-6 text-center">
+              <div class="text-3xl sm:text-4xl font-black text-indigo-600 font-display counter-val" data-target="50000">50,000+</div>
+              <div class="text-xs sm:text-sm font-semibold text-slate-600 mt-1">Orders Fulfilled</div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+              <div class="text-3xl sm:text-4xl font-black text-purple-600 font-display counter-val" data-target="1200">1,200+</div>
+              <div class="text-xs sm:text-sm font-semibold text-slate-600 mt-1">Curated Products</div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+              <div class="text-3xl sm:text-4xl font-black text-pink-600 font-display counter-val" data-target="99">99.8%</div>
+              <div class="text-xs sm:text-sm font-semibold text-slate-600 mt-1">On-Time Delivery</div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center">
+              <div class="text-3xl sm:text-4xl font-black text-emerald-600 font-display">4.9 / 5</div>
+              <div class="text-xs sm:text-sm font-semibold text-slate-600 mt-1">Customer Rating</div>
+            </div>
+          </div>
+
+          <!-- Mission, Vision & Values Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass-card rounded-3xl p-8 space-y-3">
+              <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl">
+                <i class="fa-solid fa-bullseye"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 font-display">Our Mission</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                To simplify and elevate shopping by curating only well-crafted, durable, and genuinely enjoyable products without middleman markups.
+              </p>
+            </div>
+
+            <div class="glass-card rounded-3xl p-8 space-y-3">
+              <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl">
+                <i class="fa-solid fa-eye"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 font-display">Our Vision</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                To become the most reliable, human-centered e-commerce destination praised worldwide for design elegance, ethical sourcing, and lightning dispatch.
+              </p>
+            </div>
+
+            <div class="glass-card rounded-3xl p-8 space-y-3">
+              <div class="w-12 h-12 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center text-xl">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 font-display">Our Core Values</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                Obsessive attention to detail, transparent customer communication, strict eco-friendly packaging standards, and constant technological innovation.
+              </p>
+            </div>
+          </div>
+
+          <!-- Why VivanX Section -->
+          <div class="glass-card rounded-3xl p-8 sm:p-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">The Difference</span>
+                <h3 class="text-2xl sm:text-3xl font-black text-slate-900 font-display mt-2 mb-4">Why VivanX Stands Apart</h3>
+                <div class="space-y-4 text-slate-600 text-sm leading-relaxed">
+                  <p>In a web crowded with low-grade clones, VivanX hand-picks every electronic component, stitch of apparel, and shoe sole through rigorous quality assurance testing.</p>
+                  <p>Our direct relationships with certified manufacturers mean superior pricing, authentic warranties, and zero guesswork for you.</p>
+                  <div class="pt-2 flex gap-4">
+                    <a href="#products-section" onclick="navigateTo('home')" class="px-6 py-3 rounded-xl bg-indigo-600 text-white font-bold text-xs hover:bg-indigo-700 transition-all shadow-md">Browse Collection</a>
+                    <a href="#contact" onclick="navigateTo('contact')" class="px-6 py-3 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs hover:bg-slate-200 transition-all">Get In Touch</a>
+                  </div>
+                </div>
+              </div>
+              <div class="rounded-2xl overflow-hidden shadow-xl aspect-video lg:aspect-square">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="VivanX Team Collaborative Studio" class="w-full h-full object-cover">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div> <!-- End Page About -->
+
+    <div id="page-services" class="page-section hidden">
+      <section class="py-16 sm:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+          
+          <div class="text-center max-w-3xl mx-auto space-y-4">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100">Premium Services</span>
+            <h1 class="text-4xl sm:text-5xl font-black text-slate-900 font-display">Crafted For Seamless Convenience</h1>
+            <p class="text-slate-600 text-base leading-relaxed">
+              Explore our full suite of shopping services, global delivery options, buyer safeguards, and live order tracking.
+            </p>
+          </div>
+
+          <!-- Interactive Order Tracking Module -->
+          <div class="glass-card rounded-3xl p-6 sm:p-10 border border-indigo-200/60 shadow-xl max-w-4xl mx-auto">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Live Tracker
+                </span>
+                <h3 class="text-2xl font-black text-slate-900 font-display mt-1">Track Your Order Live</h3>
+                <p class="text-xs text-slate-500">Enter your VivanX Tracking ID to view real-time status.</p>
+              </div>
+
+              <!-- Quick Demo Codes -->
+              <div class="flex items-center gap-1.5 text-xs text-slate-500">
+                <span>Try Demo:</span>
+                <button onclick="simulateOrderTrack('VX-98214')" class="px-2 py-1 rounded-md bg-indigo-50 text-indigo-600 font-bold hover:bg-indigo-100">VX-98214</button>
+                <button onclick="simulateOrderTrack('VX-43109')" class="px-2 py-1 rounded-md bg-indigo-50 text-indigo-600 font-bold hover:bg-indigo-100">VX-43109</button>
+              </div>
+            </div>
+
+            <!-- Tracking Input Form -->
+            <form onsubmit="handleOrderTrackForm(event)" class="flex flex-col sm:flex-row gap-3">
+              <div class="relative flex-1">
+                <input type="text" id="orderTrackingInput" placeholder="e.g. VX-98214 or your order ID" value="VX-98214" required class="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <i class="fa-solid fa-magnifying-glass-location absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+              </div>
+              <button type="submit" class="px-7 py-3 rounded-xl bg-indigo-600 text-white font-bold text-sm hover:bg-indigo-700 transition-all flex items-center justify-center gap-2 shadow-md">
+                <i class="fa-solid fa-radar"></i>
+                <span>Track Package</span>
+              </button>
+            </form>
+
+            <!-- Order Status Result Display Card -->
+            <div id="trackingResultArea" class="mt-8 pt-8 border-t border-slate-200/80">
+              <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                <div>
+                  <div class="text-xs text-slate-400 uppercase font-semibold">Tracking Number</div>
+                  <div class="text-base font-bold text-slate-900" id="trackerDisplayCode">VX-98214</div>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-400 uppercase font-semibold">Estimated Arrival</div>
+                  <div class="text-base font-bold text-indigo-600" id="trackerEta">Tomorrow by 4:00 PM</div>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-400 uppercase font-semibold">Carrier</div>
+                  <div class="text-base font-bold text-slate-800">VivanX Express Priority</div>
+                </div>
+              </div>
+
+              <!-- 4-Step Progress Steps UI -->
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4 relative">
+                <!-- Step 1 -->
+                <div class="flex flex-col items-center text-center p-3 rounded-xl bg-indigo-50/80 border border-indigo-100">
+                  <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs mb-2">
+                    <i class="fa-solid fa-check"></i>
+                  </div>
+                  <span class="text-xs font-bold text-slate-900">Order Placed</span>
+                  <span class="text-[10px] text-slate-500">Sep 26, 10:14 AM</span>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flex flex-col items-center text-center p-3 rounded-xl bg-indigo-50/80 border border-indigo-100">
+                  <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs mb-2">
+                    <i class="fa-solid fa-check"></i>
+                  </div>
+                  <span class="text-xs font-bold text-slate-900">Processing</span>
+                  <span class="text-[10px] text-slate-500">Quality Checked</span>
+                </div>
+
+                <!-- Step 3 (Active) -->
+                <div class="flex flex-col items-center text-center p-3 rounded-xl bg-indigo-100/90 border border-indigo-300">
+                  <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs mb-2 animate-bounce">
+                    <i class="fa-solid fa-truck-ramp-box"></i>
+                  </div>
+                  <span class="text-xs font-bold text-indigo-900">In Transit</span>
+                  <span class="text-[10px] text-indigo-600 font-semibold">Out for Final Delivery</span>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flex flex-col items-center text-center p-3 rounded-xl bg-slate-50 border border-slate-200 opacity-60">
+                  <div class="w-8 h-8 rounded-full bg-slate-300 text-white flex items-center justify-center text-xs mb-2">
+                    <i class="fa-solid fa-box"></i>
+                  </div>
+                  <span class="text-xs font-bold text-slate-700">Delivered</span>
+                  <span class="text-[10px] text-slate-400">Signature required</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Services Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass-card rounded-2xl p-6 space-y-2">
+              <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg"><i class="fa-solid fa-plane-departure"></i></div>
+              <h4 class="text-base font-bold text-slate-900">Global Express</h4>
+              <p class="text-xs text-slate-500 leading-relaxed">Air shipping to over 85 countries with full customs pre-clearance.</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 space-y-2">
+              <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg"><i class="fa-solid fa-shield-halved"></i></div>
+              <h4 class="text-base font-bold text-slate-900">Buyer Protection</h4>
+              <p class="text-xs text-slate-500 leading-relaxed">Full refund if items do not arrive as described or damaged in transit.</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 space-y-2">
+              <div class="w-12 h-12 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center text-lg"><i class="fa-solid fa-arrow-rotate-left"></i></div>
+              <h4 class="text-base font-bold text-slate-900">Prepaid Returns</h4>
+              <p class="text-xs text-slate-500 leading-relaxed">Download a printable return label in 1 click from your account.</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 space-y-2">
+              <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-lg"><i class="fa-solid fa-comments"></i></div>
+              <h4 class="text-base font-bold text-slate-900">VIP Concierge</h4>
+              <p class="text-xs text-slate-500 leading-relaxed">Personal shopping assistance and tech configuration recommendations.</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 space-y-2">
+              <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg"><i class="fa-solid fa-credit-card"></i></div>
+              <h4 class="text-base font-bold text-slate-900">Split In 4 Payments</h4>
+              <p class="text-xs text-slate-500 leading-relaxed">Zero percent interest installment options available at checkout.</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 space-y-2">
+              <div class="w-12 h-12 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-lg"><i class="fa-solid fa-leaf"></i></div>
+              <h4 class="text-base font-bold text-slate-900">Eco-Friendly Packs</h4>
+              <p class="text-xs text-slate-500 leading-relaxed">100% biodegradable and recyclable soy-ink shipping cartons.</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 space-y-2">
+              <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg"><i class="fa-solid fa-certificate"></i></div>
+              <h4 class="text-base font-bold text-slate-900">1-Year Warranty</h4>
+              <p class="text-xs text-slate-500 leading-relaxed">Standard 12-month manufacturer replacement policy on electronics.</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 space-y-2">
+              <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-lg"><i class="fa-solid fa-gift"></i></div>
+              <h4 class="text-base font-bold text-slate-900">Gift Packaging</h4>
+              <p class="text-xs text-slate-500 leading-relaxed">Custom luxury ribbon wrapping with personalized greetings card.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div> <!-- End Page Services -->
+
+    <div id="page-contact" class="page-section hidden">
+      <section class="py-16 sm:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+          
+          <div class="text-center max-w-3xl mx-auto space-y-4">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100">Get In Touch</span>
+            <h1 class="text-4xl sm:text-5xl font-black text-slate-900 font-display">We'd Love To Hear From You</h1>
+            <p class="text-slate-600 text-base leading-relaxed">
+              Have questions regarding an order, partnership inquiries, or product specs? Our friendly concierge team responds within 24 hours.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            
+            <!-- Contact Info Cards -->
+            <div class="lg:col-span-5 space-y-6">
+              <div class="glass-card rounded-3xl p-8 space-y-6">
+                <h3 class="text-xl font-bold text-slate-900 font-display">Contact Information</h3>
+                
+                <div class="flex items-start gap-4">
+                  <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-location-dot"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase">Headquarters</h4>
+                    <p class="text-sm font-semibold text-slate-800">VivanX Commerce Tower, Suite 400<br>742 Innovation Way, Tech Corridor, CA 94105</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-envelope"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase">Email Support</h4>
+                    <p class="text-sm font-semibold text-slate-800">support@vivanxshop.com</p>
+                    <p class="text-xs text-slate-500">partnerships@vivanxshop.com</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-phone"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-xs font-bold text-slate-400 uppercase">Direct Line</h4>
+                    <p class="text-sm font-semibold text-slate-800">+1 (800) 848-2697</p>
+                    <p class="text-xs text-slate-500">Mon - Fri: 8:00 AM – 8:00 PM EST</p>
+                  </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="pt-4 border-t border-slate-200">
+                  <h4 class="text-xs font-bold text-slate-400 uppercase mb-3">Connect With Us</h4>
+                  <div class="flex items-center gap-3">
+                    <a href="https://twitter.com" target="_blank" rel="noopener" class="w-9 h-9 rounded-xl bg-slate-100 text-slate-600 hover:bg-indigo-600 hover:text-white flex items-center justify-center transition-all"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener" class="w-9 h-9 rounded-xl bg-slate-100 text-slate-600 hover:bg-pink-600 hover:text-white flex items-center justify-center transition-all"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" class="w-9 h-9 rounded-xl bg-slate-100 text-slate-600 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com" target="_blank" rel="noopener" class="w-9 h-9 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-900 hover:text-white flex items-center justify-center transition-all"><i class="fa-brands fa-github"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="lg:col-span-7">
+              <div class="glass-card rounded-3xl p-8 sm:p-10 shadow-xl">
+                <h3 class="text-2xl font-bold text-slate-900 font-display mb-2">Send Us a Message</h3>
+                <p class="text-slate-500 text-xs sm:text-sm mb-6">Fill in the form below and our team will get back to you shortly.</p>
+
+                <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Your Full Name *</label>
+                      <input type="text" id="contactName" required placeholder="John Doe" class="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50">
+                    </div>
+                    <div>
+                      <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Email Address *</label>
+                      <input type="email" id="contactEmail" required placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50">
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Phone Number</label>
+                      <input type="tel" id="contactPhone" placeholder="+1 (555) 000-0000" class="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50">
+                    </div>
+                    <div>
+                      <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Subject *</label>
+                      <input type="text" id="contactSubject" required placeholder="Order inquiry / Question" class="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50">
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Your Message *</label>
+                    <textarea id="contactMessage" rows="5" required placeholder="How can our support team assist you today?" class="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50"></textarea>
+                  </div>
+
+                  <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-sm hover:opacity-95 transition-all shadow-lg shadow-indigo-500/25 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Send Inquiry</span>
+                  </button>
+                </form>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="max-w-3xl mx-auto space-y-4 pt-8">
+            <h3 class="text-2xl font-bold text-slate-900 font-display text-center mb-6">Frequently Asked Questions</h3>
+            
+            <div class="glass-card rounded-2xl p-5 cursor-pointer" onclick="toggleFaq(this)">
+              <div class="flex items-center justify-between font-bold text-sm text-slate-800">
+                <span>How fast is standard shipping?</span>
+                <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform"></i>
+              </div>
+              <div class="hidden text-xs text-slate-600 mt-3 pt-3 border-t border-slate-100 leading-relaxed">
+                Standard orders arrive in 2-4 business days within the continental United States. International shipments average 5-8 business days with door-to-door courier tracking.
+              </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-5 cursor-pointer" onclick="toggleFaq(this)">
+              <div class="flex items-center justify-between font-bold text-sm text-slate-800">
+                <span>What is the 30-Day Money-Back Guarantee policy?</span>
+                <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform"></i>
+              </div>
+              <div class="hidden text-xs text-slate-600 mt-3 pt-3 border-t border-slate-100 leading-relaxed">
+                If you are not 100% satisfied with your item, you can return it within 30 days of receiving it in original condition for a full refund or exchange.
+              </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-5 cursor-pointer" onclick="toggleFaq(this)">
+              <div class="flex items-center justify-between font-bold text-sm text-slate-800">
+                <span>Are transactions protected on VivanX Shop?</span>
+                <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform"></i>
+              </div>
+              <div class="hidden text-xs text-slate-600 mt-3 pt-3 border-t border-slate-100 leading-relaxed">
+                Yes. All transactions are simulated in this frontend demonstration, but our production architecture supports end-to-end 256-bit encryption with PCI-DSS compliance.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div> <!-- End Page Contact -->
+
+    <div id="page-privacy" class="page-section hidden">
+      <section class="py-16 sm:py-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          
+          <div class="text-center space-y-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100">Legal & Transparency</span>
+            <h1 class="text-3xl sm:text-4xl font-black text-slate-900 font-display">Privacy Policy & Terms</h1>
+            <p class="text-slate-500 text-xs sm:text-sm">Effective Date: September 2026 | Last Updated: September 27, 2026</p>
+          </div>
+
+          <!-- Important Demo Banner -->
+          <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-800 text-xs sm:text-sm flex items-start gap-3">
+            <i class="fa-solid fa-triangle-exclamation text-amber-500 mt-0.5 text-base"></i>
+            <div>
+              <span class="font-bold">Frontend Demonstration Notice:</span>
+              VivanX Shop is a prototype e-commerce application. All cart data and order tracking are managed purely client-side via your browser's localStorage. No sensitive credit card details or server-side telemetry are collected.
+            </div>
+          </div>
+
+          <!-- Document Content Box -->
+          <div class="glass-card rounded-3xl p-8 sm:p-12 space-y-8 text-slate-700 text-sm leading-relaxed">
+            
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 font-display mb-2">1. Introduction</h2>
+              <p>Welcome to VivanX Shop ("we," "our," or "us"). We value your trust and are committed to safeguarding your personal data in accordance with modern data privacy frameworks including GDPR and CCPA.</p>
+            </section>
+
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 font-display mb-2">2. Information We Collect</h2>
+              <p>When you browse or interact with VivanX Shop, we may collect:</p>
+              <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-600">
+                <li><strong>Device Information:</strong> Browser type, viewport dimensions, language preferences.</li>
+                <li><strong>Voluntary Form Submissions:</strong> Full name, email address, phone number, and support inquiry messages submitted through our contact forms.</li>
+                <li><strong>Local Cart Storage:</strong> Items added to cart and promo codes are stored locally on your device.</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 font-display mb-2">3. How We Use Information</h2>
+              <p>Collected data is used strictly to provide you with an interactive shopping interface, process customer inquiries, preserve cart items across page refreshes, and test user experience ergonomics.</p>
+            </section>
+
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 font-display mb-2">4. Cookies & Browser Local Storage</h2>
+              <p>We utilize client-side <code>localStorage</code> to remember items in your shopping bag and recently viewed preferences. We do not use third-party tracking cookies or advertising pixels.</p>
+            </section>
+
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 font-display mb-2">5. Data Security</h2>
+              <p>We implement industry-standard best practices, SSL/TLS transport layer security, and code integrity audits to protect any client interaction against unauthorized tampering.</p>
+            </section>
+
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 font-display mb-2">6. Third-Party Services</h2>
+              <p>Our website utilizes trustworthy CDNs such as Tailwind CSS, Font Awesome, and Google Fonts to deliver styling and iconography. These providers may process standard HTTP headers.</p>
+            </section>
+
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 font-display mb-2">7. User Rights</h2>
+              <p>Under international privacy regulations, you have the right to inspect, export, or erase any personal information associated with your browsing session. You may clear your browser's site cache at any time to remove all saved cart information.</p>
+            </section>
+
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 font-display mb-2">8. Children's Privacy</h2>
+              <p>Our storefront does not knowingly market to or solicit personally identifiable data from individuals under 13 years of age. If you believe a minor has provided information, please reach out to us for immediate remediation.</p>
+            </section>
+
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 font-display mb-2">9. Policy Updates</h2>
+              <p>We may periodically update this policy to reflect UI enhancements or regulatory requirements. Any adjustments will be indicated with an updated "Last Modified" timestamp at the top of this document.</p>
+            </section>
+
+            <section>
+              <h2 class="text-lg font-bold text-slate-900 font-display mb-2">10. Contact Information</h2>
+              <p>If you have questions or inquiries regarding our data handling procedures, you may reach our Data Protection Officer at:</p>
+              <div class="mt-2 p-4 rounded-xl bg-slate-50 text-slate-800 text-xs font-mono">
+                Email: privacy@vivanxshop.com<br>
+                Address: VivanX Compliance Office, 742 Innovation Way, CA 94105
+              </div>
+            </section>
+
+          </div>
+
+        </div>
+      </section>
+    </div> <!-- End Page Privacy -->
+
+  </main>
+
+  <div id="cartDrawerBackdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-slate-950/40 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300"></div>
+  <aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white/95 backdrop-blur-2xl z-50 shadow-2xl border-l border-slate-200 transform translate-x-full transition-transform duration-300 flex flex-col">
+    <!-- Cart Header -->
+    <div class="p-6 border-b border-slate-200 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-bag-shopping text-indigo-600 text-xl"></i>
+        <h3 class="text-xl font-bold text-slate-900 font-display">Your Shopping Bag</h3>
+        <span id="cartDrawerCountBadge" class="text-xs px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 font-bold">0</span>
+      </div>
+      <button onclick="toggleCartDrawer(false)" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-all" aria-label="Close Cart">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+    </div>
+
+    <!-- Cart Items Scrollable List -->
+    <div id="cartItemsList" class="flex-1 overflow-y-auto p-6 space-y-4">
+      <!-- Injected by JavaScript -->
+    </div>
+
+    <!-- Empty Cart Notification State -->
+    <div id="cartEmptyState" class="hidden flex-1 flex-col items-center justify-center p-8 text-center space-y-4">
+      <div class="w-20 h-20 rounded-full bg-indigo-50 text-indigo-400 flex items-center justify-center text-3xl">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </div>
+      <h4 class="text-lg font-bold text-slate-800">Your bag is currently empty</h4>
+      <p class="text-xs text-slate-500 max-w-xs">Explore our latest arrivals in Electronics, Fashion, Footwear, and Smart Gadgets.</p>
+      <button onclick="toggleCartDrawer(false); navigateTo('home')" class="px-6 py-2.5 rounded-xl bg-indigo-600 text-white font-bold text-xs hover:bg-indigo-700 transition-all">Start Shopping</button>
+    </div>
+
+    <!-- Cart Footer & Checkout Summary -->
+    <div id="cartFooterArea" class="p-6 border-t border-slate-200 bg-slate-50/80 space-y-3">
+      <!-- Promo code input -->
+      <div class="flex gap-2">
+        <input type="text" id="promoInput" placeholder="Promo code (e.g. VIVANX10)" class="flex-1 px-3 py-2 text-xs rounded-xl bg-white border border-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 uppercase">
+        <button onclick="handleApplyPromo()" class="px-4 py-2 rounded-xl bg-slate-800 text-white font-bold text-xs hover:bg-slate-900 transition-all">Apply</button>
+      </div>
+      <div id="promoNotice" class="text-[11px] text-emerald-600 font-semibold hidden"></div>
+
+      <!-- Financial breakdown -->
+      <div class="space-y-1.5 text-xs text-slate-600 pt-2 border-t border-slate-200">
+        <div class="flex justify-between">
+          <span>Subtotal</span>
+          <span id="cartSubtotal" class="font-bold text-slate-900">$0.00</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Discount</span>
+          <span id="cartDiscount" class="font-bold text-emerald-600">-$0.00</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Estimated Shipping</span>
+          <span id="cartShipping" class="font-bold text-slate-900">FREE</span>
+        </div>
+        <div class="flex justify-between text-sm pt-2 border-t border-slate-200 font-black text-slate-900">
+          <span>Estimated Total</span>
+          <span id="cartTotal" class="text-indigo-600 text-base">$0.00</span>
+        </div>
+      </div>
+
+      <button onclick="simulateCheckout()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-sm hover:opacity-95 shadow-lg shadow-indigo-500/25 transition-all flex items-center justify-center gap-2">
+        <i class="fa-solid fa-lock text-xs"></i>
+        <span>Checkout Now</span>
+      </button>
+      <div class="text-[10px] text-center text-slate-400">Guaranteed 256-Bit Encrypted Demo Checkout</div>
+    </div>
+  </aside>
+
+  <div id="quickViewModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div onclick="closeQuickViewModal()" class="fixed inset-0 bg-slate-950/50 backdrop-blur-sm transition-opacity"></div>
+    <div class="relative glass-card bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 z-10 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      <button onclick="closeQuickViewModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:text-slate-900 flex items-center justify-center transition-all">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+        <div class="rounded-2xl overflow-hidden aspect-square bg-slate-100">
+          <img id="modalProductImage" src="" alt="" class="w-full h-full object-cover">
+        </div>
+        <div class="space-y-3">
+          <span id="modalProductCategory" class="text-[11px] font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full"></span>
+          <h3 id="modalProductName" class="text-2xl font-black text-slate-900 font-display"></h3>
+          <div class="flex items-center gap-2">
+            <div id="modalProductRating" class="flex text-amber-400 text-xs"></div>
+            <span class="text-xs text-slate-500" id="modalProductReviews"></span>
+          </div>
+          <p id="modalProductDesc" class="text-xs text-slate-600 leading-relaxed"></p>
+          
+          <div class="flex items-baseline gap-2 pt-2">
+            <span id="modalProductPrice" class="text-2xl font-black text-indigo-600"></span>
+            <span id="modalProductOldPrice" class="text-sm text-slate-400 line-through"></span>
+            <span id="modalProductDiscount" class="text-xs font-bold text-rose-600"></span>
+          </div>
+
+          <div class="pt-4 flex gap-3">
+            <button id="modalAddToCartBtn" class="flex-1 py-3 rounded-xl bg-indigo-600 text-white font-bold text-xs hover:bg-indigo-700 transition-all flex items-center justify-center gap-2">
+              <i class="fa-solid fa-cart-plus"></i> Add to Bag
+            </button>
+            <button id="modalBuyNowBtn" class="py-3 px-4 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-black transition-all">
+              Buy Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="fileViewerModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-6">
+    <div onclick="closeFileViewerModal()" class="fixed inset-0 bg-slate-950/60 backdrop-blur-md"></div>
+    <div class="relative bg-slate-900 text-slate-100 rounded-3xl max-w-5xl w-full h-[85vh] z-10 shadow-2xl flex flex-col overflow-hidden border border-slate-800">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-950">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-indigo-600/30 text-indigo-400 flex items-center justify-center border border-indigo-500/30">
+            <i class="fa-solid fa-folder-tree"></i>
+          </div>
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-white font-display">VivanX Shop Folder Structure & Source Files</h3>
+            <p class="text-[11px] text-slate-400">View and copy the standalone multi-file code as requested in the specifications</p>
+          </div>
+        </div>
+        <button onclick="closeFileViewerModal()" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- File Tabs Navigation -->
+      <div class="px-6 py-2.5 bg-slate-900/90 border-b border-slate-800 flex items-center gap-2 overflow-x-auto text-xs scrollbar-none" id="fileViewerTabs">
+        <button onclick="switchFileView('index.html')" class="file-tab active px-3 py-1.5 rounded-lg bg-indigo-600 text-white font-mono font-medium flex items-center gap-1.5"><i class="fa-brands fa-html5 text-orange-400"></i> index.html</button>
+        <button onclick="switchFileView('about.html')" class="file-tab px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-mono font-medium hover:text-white flex items-center gap-1.5"><i class="fa-brands fa-html5 text-orange-400"></i> about.html</button>
+        <button onclick="switchFileView('services.html')" class="file-tab px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-mono font-medium hover:text-white flex items-center gap-1.5"><i class="fa-brands fa-html5 text-orange-400"></i> services.html</button>
+        <button onclick="switchFileView('contact.html')" class="file-tab px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-mono font-medium hover:text-white flex items-center gap-1.5"><i class="fa-brands fa-html5 text-orange-400"></i> contact.html</button>
+        <button onclick="switchFileView('privacy-policy.html')" class="file-tab px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-mono font-medium hover:text-white flex items-center gap-1.5"><i class="fa-brands fa-html5 text-orange-400"></i> privacy-policy.html</button>
+        <button onclick="switchFileView('css/style.css')" class="file-tab px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-mono font-medium hover:text-white flex items-center gap-1.5"><i class="fa-brands fa-css3-alt text-blue-400"></i> css/style.css</button>
+        <button onclick="switchFileView('js/script.js')" class="file-tab px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-mono font-medium hover:text-white flex items-center gap-1.5"><i class="fa-brands fa-js text-yellow-400"></i> js/script.js</button>
+        <button onclick="switchFileView('robots.txt')" class="file-tab px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-mono font-medium hover:text-white flex items-center gap-1.5"><i class="fa-solid fa-robot text-teal-400"></i> robots.txt</button>
+        <button onclick="switchFileView('sitemap.xml')" class="file-tab px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-mono font-medium hover:text-white flex items-center gap-1.5"><i class="fa-solid fa-sitemap text-emerald-400"></i> sitemap.xml</button>
+      </div>
+
+      <!-- Code Content Display Area -->
+      <div class="relative flex-1 bg-slate-950 p-4 sm:p-6 overflow-auto font-mono text-xs text-slate-300">
+        <div class="absolute top-4 right-4 flex items-center gap-2 z-10">
+          <button onclick="downloadCurrentFile()" title="Download this file individually" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-sans font-bold text-xs flex items-center gap-1.5 shadow-md transition-all">
+            <i class="fa-solid fa-download text-teal-400"></i>
+            <span>Download File</span>
+          </button>
+          <button onclick="downloadProjectZip()" title="Download entire project with all 9 files in folders" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-sans font-bold text-xs flex items-center gap-1.5 shadow-md transition-all">
+            <i class="fa-solid fa-file-zipper"></i>
+            <span>Download ZIP</span>
+          </button>
+          <button onclick="copyCurrentFileCode()" id="copyCodeBtn" class="px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-sans font-bold text-xs flex items-center gap-1.5 shadow-md">
+            <i class="fa-regular fa-copy"></i>
+            <span id="copyBtnText">Copy Code</span>
+          </button>
+        </div>
+        <pre><code id="fileCodeDisplay" class="block whitespace-pre"></code></pre>
+      </div>
+      
+      <div class="px-6 py-2 bg-slate-950 border-t border-slate-800 text-[11px] text-slate-500 flex justify-between items-center">
+        <span>Structure: <code class="text-indigo-400">VivanX-Shop/</code></span>
+        <span>Standalone production ready code</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+  <!-- Back to Top Floating Button -->
+  <button id="backToTopBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="fixed bottom-6 left-6 z-40 w-11 h-11 rounded-2xl bg-white/90 backdrop-blur-md border border-slate-200 text-slate-700 shadow-xl hover:text-indigo-600 hover:border-indigo-300 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300">
+    <i class="fa-solid fa-arrow-up text-sm"></i>
+  </button>
+
+  <footer class="glass-nav border-t border-slate-200/80 mt-20 pt-16 pb-12 z-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+        
+        <!-- Brand Info -->
+        <div class="lg:col-span-2 space-y-4">
+          <a href="#home" class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-md">
+              <i class="fa-solid fa-bag-shopping text-base"></i>
+            </div>
+            <span class="text-xl font-black tracking-tight font-display text-slate-900">VivanX<span class="text-indigo-600">.</span></span>
+          </a>
+          <p class="text-xs text-slate-500 max-w-sm leading-relaxed">
+            The next-generation frontend shopping experience designed for high performance, glassmorphism elegance, and uncompromising product curation.
+          </p>
+          <div class="flex items-center gap-3 text-slate-400 pt-2">
+            <a href="https://twitter.com" target="_blank" rel="noopener" class="hover:text-indigo-600 transition-colors"><i class="fa-brands fa-x-twitter text-sm"></i></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="hover:text-pink-600 transition-colors"><i class="fa-brands fa-instagram text-sm"></i></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="hover:text-blue-600 transition-colors"><i class="fa-brands fa-linkedin text-sm"></i></a>
+            <a href="https://github.com" target="_blank" rel="noopener" class="hover:text-slate-900 transition-colors"><i class="fa-brands fa-github text-sm"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 mb-4 font-display">Navigation</h4>
+          <ul class="space-y-2.5 text-xs text-slate-600">
+            <li><a href="#home" onclick="navigateTo('home')" class="hover:text-indigo-600 transition-colors">Home Storefront</a></li>
+            <li><a href="#about" onclick="navigateTo('about')" class="hover:text-indigo-600 transition-colors">About Us</a></li>
+            <li><a href="#services" onclick="navigateTo('services')" class="hover:text-indigo-600 transition-colors">Services & Delivery</a></li>
+            <li><a href="#contact" onclick="navigateTo('contact')" class="hover:text-indigo-600 transition-colors">Contact Support</a></li>
+            <li><a href="#privacy" onclick="navigateTo('privacy')" class="hover:text-indigo-600 transition-colors">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Categories -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 mb-4 font-display">Categories</h4>
+          <ul class="space-y-2.5 text-xs text-slate-600">
+            <li><a href="#home" onclick="filterByCategory('Electronics')" class="hover:text-indigo-600 transition-colors">Electronics & Audio</a></li>
+            <li><a href="#home" onclick="filterByCategory('Fashion')" class="hover:text-indigo-600 transition-colors">Apparel & Fashion</a></li>
+            <li><a href="#home" onclick="filterByCategory('Shoes')" class="hover:text-indigo-600 transition-colors">Footwear & Sneakers</a></li>
+            <li><a href="#home" onclick="filterByCategory('Gadgets')" class="hover:text-indigo-600 transition-colors">Smart Gadgets</a></li>
+            <li><a href="#home" onclick="filterByCategory('Home')" class="hover:text-indigo-600 transition-colors">Home & Living</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Sub Footer -->
+      <div class="pt-8 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <p>© 2026 VivanX Shop. All rights reserved. Crafted for modern commerce.</p>
+        <div class="flex items-center gap-4">
+          <a href="#privacy" onclick="navigateTo('privacy')" class="hover:underline">Privacy Policy</a>
+          <span>•</span>
+          <a href="#contact" onclick="navigateTo('contact')" class="hover:underline">Support</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT LOGIC & APPLICATION STATE       -->
+  <!-- ========================================== -->
+  <script>
+    const PRODUCTS = [
+      {
+        id: 1,
+        name: "AuraSound Pro Max Headphones",
+        category: "Electronics",
+        price: 249.99,
+        oldPrice: 349.99,
+        discount: 29,
+        rating: 4.9,
+        reviews: 218,
+        description: "Studio-engineered active noise cancellation headphones with custom spatial titanium audio drivers, 40-hour battery life, and ultra-plush breathable memory foam ear cushions.",
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 2,
+        name: "Nova Minimalist Titanium Chrono",
+        category: "Accessories",
+        price: 189.00,
+        oldPrice: 260.00,
+        discount: 27,
+        rating: 4.8,
+        reviews: 142,
+        description: "Matte titanium casing, anti-reflective sapphire glass crystal, Swiss quartz movement, and interchangeable vegetable-tanned Italian leather band.",
+        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 3,
+        name: "SwiftStep Air Velocity Sneakers",
+        category: "Shoes",
+        price: 129.50,
+        oldPrice: 175.00,
+        discount: 26,
+        rating: 4.9,
+        reviews: 310,
+        description: "Ultralight breathable knitted upper with nitrogen-infused responsive bounce foam. Engineered for marathon comfort and street-ready flair.",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 4,
+        name: "LuxeCashmere Oversized Knit",
+        category: "Fashion",
+        price: 115.00,
+        oldPrice: 160.00,
+        discount: 28,
+        rating: 4.7,
+        reviews: 89,
+        description: "Crafted from 100% sustainably harvested grade-A Mongolian cashmere with ribbed cuffs and a relaxed contemporary drape.",
+        image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 5,
+        name: "ErgoComfort Nordic Lounge Chair",
+        category: "Home",
+        price: 389.00,
+        oldPrice: 520.00,
+        discount: 25,
+        rating: 5.0,
+        reviews: 64,
+        description: "Sculpted solid birch timber framework upholstered in high-durability boucle fabric. Ergonomically contoured for hours of serene reading.",
+        image: "https://images.unsplash.com/photo-1580481077195-c3a821a58875?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 6,
+        name: "UltraVision 4K Drone Gimbal",
+        category: "Gadgets",
+        price: 499.00,
+        oldPrice: 699.00,
+        discount: 29,
+        rating: 4.9,
+        reviews: 175,
+        description: "Compact foldable drone featuring 3-axis mechanical stabilization, 4K/60fps HDR cinematic recording, omnidirectional obstacle sensors, and 34-min flight time.",
+        image: "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 7,
+        name: "BionicSmart AMOLED Health Ring",
+        category: "Gadgets",
+        price: 199.00,
+        oldPrice: 279.00,
+        discount: 29,
+        rating: 4.8,
+        reviews: 95,
+        description: "Titanium grade smart ring tracking sleep stages, readiness score, HRV, and skin temperature with 7-day battery life and water resistance up to 50m.",
+        image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 8,
+        name: "Artisan Full-Grain Leather Bag",
+        category: "Accessories",
+        price: 210.00,
+        oldPrice: 295.00,
+        discount: 29,
+        rating: 4.9,
+        reviews: 114,
+        description: "Handcrafted full-grain vegetable leather backpack with padded 16-inch laptop compartment, antique brass hardware, and luggage pass-through strap.",
+        image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 9,
+        name: "StormProof Tech All-Weather Parka",
+        category: "Fashion",
+        price: 175.00,
+        oldPrice: 250.00,
+        discount: 30,
+        rating: 4.8,
+        reviews: 82,
+        description: "3-layer seam-sealed waterproof breathable shell with modular thermal fleece lining, magnetic storm flap, and hidden internal security pockets.",
+        image: "https://images.unsplash.com/photo-1544022613-e87ca75a784a?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 10,
+        name: "AeroPulse Elite Carbon Runners",
+        category: "Shoes",
+        price: 155.00,
+        oldPrice: 220.00,
+        discount: 30,
+        rating: 4.9,
+        reviews: 201,
+        description: "Full-length carbon fiber propulsion plate sandwiched between dual-density supercritical foam for maximum energy return.",
+        image: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 11,
+        name: "Lumix Ambient Smart Table Lamp",
+        category: "Home",
+        price: 85.00,
+        oldPrice: 120.00,
+        discount: 29,
+        rating: 4.7,
+        reviews: 78,
+        description: "Touch-sensitive brushed aluminum base with 16-million spectrum ambient lighting, circadian rhythm sync, and wireless Qi phone charger pad.",
+        image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=700&q=80"
+      },
+      {
+        id: 12,
+        name: "StudioSound Hi-Fi DAC Streamer",
+        category: "Electronics",
+        price: 320.00,
+        oldPrice: 450.00,
+        discount: 29,
+        rating: 4.9,
+        reviews: 93,
+        description: "Audiophile 32-bit/768kHz high-resolution DAC with native DSD512 decoding, balanced XLR outputs, and lossless Bluetooth LDAC streaming.",
+        image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=700&q=80"
+      }
+    ];
+
+    let currentCategory = 'All';
+    let currentSearchQuery = '';
+    let currentSort = 'featured';
+    let appliedPromo = null; // e.g. { code: 'VIVANX10', discountPct: 0.10 }
+
+    // Load initial cart from localStorage
+    let cart = [];
+    try {
+      const stored = localStorage.getItem('vivanx_cart');
+      if (stored) {
+        cart = JSON.parse(stored);
+      }
+    } catch (e) {
+      console.warn("Could not load cart from localStorage", e);
+      cart = [];
+    }
+
+    function navigateTo(pageId) {
+      const pages = ['home', 'about', 'services', 'contact', 'privacy'];
+      if (!pages.includes(pageId)) pageId = 'home';
+
+      // Update section visibility
+      pages.forEach(p => {
+        const el = document.getElementById(`page-${p}`);
+        if (el) {
+          if (p === pageId) {
+            el.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } else {
+            el.classList.add('hidden');
+          }
+        }
+      });
+
+      // Update active nav styling
+      document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.getAttribute('data-page') === pageId) {
+          link.classList.add('bg-indigo-50', 'text-indigo-600');
+          link.classList.remove('text-slate-700');
+        } else {
+          link.classList.remove('bg-indigo-50', 'text-indigo-600');
+          link.classList.add('text-slate-700');
+        }
+      });
+
+      // If opening about page, trigger counter animations
+      if (pageId === 'about') {
+        animateCounters();
+      }
+    }
+
+    // Hash listener
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.replace('#', '') || 'home';
+      if (['home', 'about', 'services', 'contact', 'privacy'].includes(hash)) {
+        navigateTo(hash);
+      }
+    });
+
+    function initCategoryTabs() {
+      const categories = ['All', 'Electronics', 'Fashion', 'Shoes', 'Accessories', 'Home', 'Gadgets'];
+      const container = document.getElementById('categoryTabsContainer');
+      if (!container) return;
+
+      container.innerHTML = categories.map(cat => `
+        <button onclick="filterByCategory('${cat}')" class="category-btn whitespace-nowrap px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${cat === currentCategory ? 'bg-indigo-600 text-white shadow-md shadow-indigo-500/25' : 'bg-white text-slate-700 hover:bg-indigo-50 border border-slate-200'}" data-category="${cat}">
+          ${cat}
+        </button>
+      `).join('');
+    }
+
+    function filterByCategory(category) {
+      currentCategory = category;
+      initCategoryTabs();
+      renderProducts();
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById('productGrid');
+      const emptyNotice = document.getElementById('noProductsFound');
+      if (!grid) return;
+
+      // Filter
+      let list = PRODUCTS.filter(p => {
+        const matchesCategory = (currentCategory === 'All' || p.category.toLowerCase() === currentCategory.toLowerCase());
+        const q = currentSearchQuery.trim().toLowerCase();
+        const matchesSearch = !q || p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q) || p.category.toLowerCase().includes(q);
+        return matchesCategory && matchesSearch;
+      });
+
+      // Sort
+      if (currentSort === 'price-low') {
+        list.sort((a, b) => a.price - b.price);
+      } else if (currentSort === 'price-high') {
+        list.sort((a, b) => b.price - a.price);
+      } else if (currentSort === 'rating') {
+        list.sort((a, b) => b.rating - a.rating);
+      } else if (currentSort === 'discount') {
+        list.sort((a, b) => b.discount - a.discount);
+      }
+
+      if (list.length === 0) {
+        grid.innerHTML = '';
+        emptyNotice.classList.remove('hidden');
+        return;
+      } else {
+        emptyNotice.classList.add('hidden');
+      }
+
+      // Render cards
+      grid.innerHTML = list.map(item => {
+        // stars
+        const fullStars = Math.floor(item.rating);
+        let starHtml = '';
+        for (let i = 0; i < fullStars; i++) starHtml += '<i class="fa-solid fa-star"></i>';
+        if (item.rating % 1 !== 0) starHtml += '<i class="fa-solid fa-star-half-stroke"></i>';
+
+        return `
+          <div class="glass-card rounded-3xl overflow-hidden flex flex-col group relative border border-slate-200/80">
+            <!-- Product Image Container -->
+            <div class="relative aspect-square overflow-hidden bg-slate-100">
+              <img src="${item.image}" alt="${item.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x600/e0e7ff/4338ca?text=${encodeURIComponent(item.name)}'">
+              
+              <!-- Badges -->
+              <div class="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
+                <span class="px-2.5 py-1 rounded-full bg-rose-500 text-white text-[10px] font-extrabold uppercase tracking-wider shadow-sm">
+                  -${item.discount}%
+                </span>
+                <span class="px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-md text-slate-800 text-[10px] font-bold shadow-sm">
+                  ${item.category}
+                </span>
+              </div>
+
+              <!-- Quick View Floating Button -->
+              <button onclick="openQuickViewModal(${item.id})" title="Quick View" class="absolute bottom-3 right-3 w-10 h-10 rounded-2xl bg-white/90 backdrop-blur-md text-slate-800 hover:text-indigo-600 hover:bg-white shadow-lg flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0">
+                <i class="fa-regular fa-eye text-sm"></i>
+              </button>
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+              <div>
+                <div class="flex items-center justify-between text-xs mb-1">
+                  <div class="flex items-center text-amber-400 gap-1 text-[11px]">
+                    ${starHtml}
+                    <span class="text-slate-500 font-semibold ml-1">${item.rating}</span>
+                  </div>
+                  <span class="text-[11px] text-slate-400">(${item.reviews})</span>
+                </div>
+
+                <h3 class="font-bold text-slate-900 text-base line-clamp-1 group-hover:text-indigo-600 transition-colors" title="${item.name}">
+                  ${item.name}
+                </h3>
+                <p class="text-xs text-slate-500 line-clamp-2 mt-1 leading-relaxed">
+                  ${item.description}
+                </p>
+              </div>
+
+              <div>
+                <!-- Prices -->
+                <div class="flex items-baseline gap-2 mb-3">
+                  <span class="text-xl font-black text-slate-900 font-display">$${item.price.toFixed(2)}</span>
+                  <span class="text-xs text-slate-400 line-through">$${item.oldPrice.toFixed(2)}</span>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="grid grid-cols-2 gap-2">
+                  <button onclick="quickAddToCart(${item.id})" class="py-2.5 px-3 rounded-xl bg-indigo-50 hover:bg-indigo-600 text-indigo-700 hover:text-white font-bold text-xs transition-all duration-200 flex items-center justify-center gap-1.5 shadow-sm">
+                    <i class="fa-solid fa-cart-plus text-xs"></i>
+                    <span>Add to Bag</span>
+                  </button>
+                  <button onclick="instantBuyNow(${item.id})" class="py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-indigo-700 text-white font-bold text-xs transition-all duration-200 flex items-center justify-center gap-1.5 shadow-sm">
+                    <span>Buy Now</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function handleSortChange(val) {
+      currentSort = val;
+      renderProducts();
+    }
+
+    function resetFilters() {
+      currentCategory = 'All';
+      currentSearchQuery = '';
+      currentSort = 'featured';
+      const liveInput = document.getElementById('liveSearchInput');
+      const navInput = document.getElementById('navbarSearchInput');
+      const sortSelect = document.getElementById('sortBySelect');
+      if (liveInput) liveInput.value = '';
+      if (navInput) navInput.value = '';
+      if (sortSelect) sortSelect.value = 'featured';
+      initCategoryTabs();
+      renderProducts();
+      showToast("Filters reset to default", "info");
+    }
+
+    function saveCart() {
+      try {
+        localStorage.setItem('vivanx_cart', JSON.stringify(cart));
+      } catch (e) {
+        console.warn("Storage quota exceeded", e);
+      }
+      updateCartUI();
+    }
+
+    function quickAddToCart(productId) {
+      const prod = PRODUCTS.find(p => p.id === productId);
+      if (!prod) return;
+
+      const existing = cart.find(item => item.id === productId);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          id: prod.id,
+          name: prod.name,
+          price: prod.price,
+          image: prod.image,
+          category: prod.category,
+          quantity: 1
+        });
+      }
+      saveCart();
+      showToast(`Added "${prod.name}" to your bag!`, "success");
+    }
+
+    function instantBuyNow(productId) {
+      quickAddToCart(productId);
+      toggleCartDrawer(true);
+    }
+
+    function updateCartQuantity(productId, delta) {
+      const item = cart.find(p => p.id === productId);
+      if (!item) return;
+
+      item.quantity += delta;
+      if (item.quantity <= 0) {
+        cart = cart.filter(p => p.id !== productId);
+        showToast("Item removed from bag", "info");
+      }
+      saveCart();
+    }
+
+    function removeFromCart(productId) {
+      const item = cart.find(p => p.id === productId);
+      cart = cart.filter(p => p.id !== productId);
+      saveCart();
+      if (item) {
+        showToast(`Removed "${item.name}" from bag`, "info");
+      }
+    }
+
+    function updateCartUI() {
+      const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+      
+      // Update badge
+      const badge = document.getElementById('cartBadge');
+      const drawerCount = document.getElementById('cartDrawerCountBadge');
+      if (badge) {
+        badge.innerText = totalCount;
+        badge.classList.toggle('scale-125', true);
+        setTimeout(() => badge.classList.remove('scale-125'), 200);
+      }
+      if (drawerCount) drawerCount.innerText = totalCount;
+
+      const listContainer = document.getElementById('cartItemsList');
+      const emptyState = document.getElementById('cartEmptyState');
+      const footerArea = document.getElementById('cartFooterArea');
+
+      if (!listContainer) return;
+
+      if (cart.length === 0) {
+        listContainer.innerHTML = '';
+        listContainer.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+        emptyState.classList.add('flex');
+        footerArea.classList.add('opacity-50', 'pointer-events-none');
+      } else {
+        listContainer.classList.remove('hidden');
+        emptyState.classList.add('hidden');
+        emptyState.classList.remove('flex');
+        footerArea.classList.remove('opacity-50', 'pointer-events-none');
+
+        listContainer.innerHTML = cart.map(item => `
+          <div class="flex items-center gap-3 p-3 rounded-2xl bg-white border border-slate-200/80 shadow-sm">
+            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-xl object-cover bg-slate-100 flex-shrink-0">
+            <div class="flex-1 min-w-0">
+              <h4 class="text-xs font-bold text-slate-900 truncate">${item.name}</h4>
+              <div class="text-[11px] text-slate-500">${item.category} • <span class="font-bold text-indigo-600">$${item.price.toFixed(2)}</span></div>
+              
+              <!-- Quantity stepper -->
+              <div class="flex items-center gap-2 mt-2">
+                <button onclick="updateCartQuantity(${item.id}, -1)" class="w-6 h-6 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center text-xs font-bold transition-colors">
+                  <i class="fa-solid fa-minus text-[10px]"></i>
+                </button>
+                <span class="text-xs font-bold text-slate-800 w-4 text-center">${item.quantity}</span>
+                <button onclick="updateCartQuantity(${item.id}, 1)" class="w-6 h-6 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center text-xs font-bold transition-colors">
+                  <i class="fa-solid fa-plus text-[10px]"></i>
+                </button>
+              </div>
+            </div>
+            
+            <div class="text-right flex flex-col items-end justify-between self-stretch">
+              <button onclick="removeFromCart(${item.id})" title="Remove Item" class="text-slate-400 hover:text-rose-500 transition-colors p-1">
+                <i class="fa-regular fa-trash-can text-xs"></i>
+              </button>
+              <div class="text-xs font-black text-slate-900 font-display">$${(item.price * item.quantity).toFixed(2)}</div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Calculations
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      let discountAmount = 0;
+      if (appliedPromo && appliedPromo.discountPct) {
+        discountAmount = subtotal * appliedPromo.discountPct;
+      }
+      const shipping = subtotal > 50 || subtotal === 0 ? 0 : 9.99;
+      const total = Math.max(0, subtotal - discountAmount + shipping);
+
+      document.getElementById('cartSubtotal').innerText = `$${subtotal.toFixed(2)}`;
+      document.getElementById('cartDiscount').innerText = `-$${discountAmount.toFixed(2)}`;
+      document.getElementById('cartShipping').innerText = shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`;
+      document.getElementById('cartTotal').innerText = `$${total.toFixed(2)}`;
+    }
+
+    function toggleCartDrawer(open) {
+      const drawer = document.getElementById('cartDrawer');
+      const backdrop = document.getElementById('cartDrawerBackdrop');
+      if (open) {
+        updateCartUI();
+        backdrop.classList.remove('hidden');
+        setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+        drawer.classList.remove('translate-x-full');
+      } else {
+        backdrop.classList.add('opacity-0');
+        drawer.classList.add('translate-x-full');
+        setTimeout(() => backdrop.classList.add('hidden'), 300);
+      }
+    }
+
+    function applyPromoCode(code) {
+      const input = document.getElementById('promoInput');
+      if (input) input.value = code;
+      handleApplyPromo();
+      toggleCartDrawer(true);
+    }
+
+    function handleApplyPromo() {
+      const input = document.getElementById('promoInput');
+      const notice = document.getElementById('promoNotice');
+      const code = (input.value || '').trim().toUpperCase();
+
+      if (code === 'VIVANX10') {
+        appliedPromo = { code: 'VIVANX10', discountPct: 0.10 };
+        notice.innerText = '✓ Promo code VIVANX10 applied (10% discount)!';
+        notice.classList.remove('hidden');
+        showToast("Coupon VIVANX10 applied successfully!", "success");
+      } else if (code) {
+        showToast("Invalid promotion code. Try 'VIVANX10'", "warning");
+        notice.classList.add('hidden');
+      }
+      updateCartUI();
+    }
+
+    function simulateCheckout() {
+      if (cart.length === 0) {
+        showToast("Your shopping bag is empty!", "warning");
+        return;
+      }
+
+      showToast("Processing simulated secure checkout...", "info");
+      setTimeout(() => {
+        cart = [];
+        saveCart();
+        toggleCartDrawer(false);
+        showToast("🎉 Order placed successfully! Thank you for testing VivanX.", "success");
+      }, 1200);
+    }
+
+    function openQuickViewModal(productId) {
+      const prod = PRODUCTS.find(p => p.id === productId);
+      if (!prod) return;
+
+      document.getElementById('modalProductImage').src = prod.image;
+      document.getElementById('modalProductName').innerText = prod.name;
+      document.getElementById('modalProductCategory').innerText = prod.category;
+      document.getElementById('modalProductDesc').innerText = prod.description;
+      document.getElementById('modalProductPrice').innerText = `$${prod.price.toFixed(2)}`;
+      document.getElementById('modalProductOldPrice').innerText = `$${prod.oldPrice.toFixed(2)}`;
+      document.getElementById('modalProductDiscount').innerText = `-${prod.discount}% OFF`;
+      document.getElementById('modalProductReviews').innerText = `(${prod.reviews} customer reviews)`;
+
+      let starHtml = '';
+      for (let i = 0; i < Math.floor(prod.rating); i++) starHtml += '<i class="fa-solid fa-star"></i>';
+      if (prod.rating % 1 !== 0) starHtml += '<i class="fa-solid fa-star-half-stroke"></i>';
+      document.getElementById('modalProductRating').innerHTML = starHtml;
+
+      document.getElementById('modalAddToCartBtn').onclick = () => {
+        quickAddToCart(prod.id);
+        closeQuickViewModal();
+      };
+      document.getElementById('modalBuyNowBtn').onclick = () => {
+        closeQuickViewModal();
+        instantBuyNow(prod.id);
+      };
+
+      document.getElementById('quickViewModal').classList.remove('hidden');
+    }
+
+    function closeQuickViewModal() {
+      document.getElementById('quickViewModal').classList.add('hidden');
+    }
+
+    function handleOrderTrackForm(e) {
+      e.preventDefault();
+      const code = document.getElementById('orderTrackingInput').value.trim();
+      simulateOrderTrack(code);
+    }
+
+    function simulateOrderTrack(code) {
+      if (!code) return;
+      document.getElementById('orderTrackingInput').value = code;
+      document.getElementById('trackerDisplayCode').innerText = code.toUpperCase();
+      
+      // Random mock variations based on code
+      const etas = ["Tomorrow by 3:30 PM", "In 2 Business Days", "Today by 7:00 PM", "Arriving Monday"];
+      const randomEta = etas[Math.abs(code.split('').reduce((a, b) => a + b.charCodeAt(0), 0)) % etas.length];
+      document.getElementById('trackerEta').innerText = randomEta;
+
+      showToast(`Tracking status updated for package #${code}`, "success");
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('contactName').value.trim();
+      const email = document.getElementById('contactEmail').value.trim();
+      const subject = document.getElementById('contactSubject').value.trim();
+
+      if (!name || !email || !subject) {
+        showToast("Please fill in all required fields marked with *", "warning");
+        return;
+      }
+
+      showToast(`Thank you, ${name}! Your inquiry has been sent to our concierge team.`, "success");
+      document.getElementById('contactForm').reset();
+    }
+
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('newsletterEmail').value.trim();
+      if (email) {
+        showToast(`Welcome! Discount promo code VIVANX10 applied to your session.`, "success");
+        applyPromoCode('VIVANX10');
+        document.getElementById('newsletterEmail').value = '';
+      }
+    }
+
+    function toggleFaq(element) {
+      const content = element.querySelector('div:nth-child(2)');
+      const icon = element.querySelector('i');
+      if (content) {
+        content.classList.toggle('hidden');
+        icon.classList.toggle('rotate-180');
+      }
+    }
+
+    function toggleMobileMenu(forcedState) {
+      const menu = document.getElementById('mobileMenu');
+      const icon = document.getElementById('mobileMenuIcon');
+      const isVisible = !menu.classList.contains('hidden');
+      const targetState = forcedState !== undefined ? forcedState : !isVisible;
+
+      if (targetState) {
+        menu.classList.remove('hidden');
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-xmark');
+      } else {
+        menu.classList.add('hidden');
+        icon.classList.add('fa-bars');
+        icon.classList.remove('fa-xmark');
+      }
+    }
+
+    function animateCounters() {
+      document.querySelectorAll('.counter-val').forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        let count = 0;
+        const speed = target / 30;
+        const update = () => {
+          count += speed;
+          if (count < target) {
+            counter.innerText = Math.ceil(count).toLocaleString() + '+';
+            requestAnimationFrame(update);
+          } else {
+            counter.innerText = target.toLocaleString() + (target < 100 ? '%' : '+');
+          }
+        };
+        update();
+      });
+    }
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-2xl shadow-xl text-xs font-semibold backdrop-blur-xl border transition-all duration-300 transform translate-y-2 opacity-0 ${
+        type === 'success' ? 'bg-emerald-950/90 text-emerald-200 border-emerald-500/40' :
+        type === 'warning' ? 'bg-amber-950/90 text-amber-200 border-amber-500/40' :
+        'bg-slate-900/90 text-white border-slate-700'
+      }`;
+
+      const icon = type === 'success' ? 'fa-circle-check text-emerald-400' :
+                   type === 'warning' ? 'fa-triangle-exclamation text-amber-400' :
+                   'fa-circle-info text-indigo-400';
+
+      toast.innerHTML = `
+        <i class="fa-solid ${icon} text-sm"></i>
+        <span>${message}</span>
+      `;
+
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-x-4');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    let activeFileName = "index.html";
+
+    function openFileViewerModal() {
+      document.getElementById('fileViewerModal').classList.remove('hidden');
+      switchFileView(activeFileName);
+    }
+
+    function closeFileViewerModal() {
+      document.getElementById('fileViewerModal').classList.add('hidden');
+    }
+
+    function switchFileView(fileName) {
+      activeFileName = fileName;
+      const codeEl = document.getElementById('fileCodeDisplay');
+      codeEl.textContent = PROJECT_FILES[fileName] || "// File not found";
+
+      // Update tab styling
+      document.querySelectorAll('#fileViewerTabs .file-tab').forEach(tab => {
+        if (tab.innerText.trim().endsWith(fileName)) {
+          tab.classList.add('bg-indigo-600', 'text-white');
+          tab.classList.remove('bg-slate-800', 'text-slate-300');
+        } else {
+          tab.classList.remove('bg-indigo-600', 'text-white');
+          tab.classList.add('bg-slate-800', 'text-slate-300');
+        }
+      });
+    }
+
+    function copyCurrentFileCode() {
+      const textToCopy = PROJECT_FILES[activeFileName] || "";
+      const copyBtnText = document.getElementById('copyBtnText');
+
+      // Safe clipboard copy mechanism
+      const textarea = document.createElement("textarea");
+      textarea.value = textToCopy;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        copyBtnText.innerText = "Copied!";
+        showToast(`Copied ${activeFileName} to clipboard!`, "success");
+        setTimeout(() => {
+          copyBtnText.innerText = "Copy Code";
+        }, 2000);
+      } catch (err) {
+        showToast("Failed to copy code", "warning");
+      }
+      document.body.removeChild(textarea);
+    }
+
+    function downloadCurrentFile() {
+      const textToCopy = PROJECT_FILES[activeFileName] || "";
+      const blob = new Blob([textToCopy], { type: "text/plain;charset=utf-8" });
+      const simpleName = activeFileName.split('/').pop();
+      if (window.saveAs) {
+        saveAs(blob, simpleName);
+      } else {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = simpleName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(link.href);
+      }
+      showToast(`Downloaded ${simpleName} successfully!`, "success");
+    }
+
+    function downloadProjectZip() {
+      showToast("Packaging VivanX-Shop.zip with all 9 files...", "info");
+      try {
+        const zip = new JSZip();
+
+        // 1. Root HTML & SEO Files
+        zip.file("index.html", PROJECT_FILES["index.html"]);
+        zip.file("about.html", PROJECT_FILES["about.html"]);
+        zip.file("services.html", PROJECT_FILES["services.html"]);
+        zip.file("contact.html", PROJECT_FILES["contact.html"]);
+        zip.file("privacy-policy.html", PROJECT_FILES["privacy-policy.html"]);
+        zip.file("robots.txt", PROJECT_FILES["robots.txt"]);
+        zip.file("sitemap.xml", PROJECT_FILES["sitemap.xml"]);
+
+        // 2. CSS Folder
+        const cssFolder = zip.folder("css");
+        cssFolder.file("style.css", PROJECT_FILES["css/style.css"]);
+
+        // 3. JS Folder
+        const jsFolder = zip.folder("js");
+        jsFolder.file("script.js", PROJECT_FILES["js/script.js"]);
+
+        // 4. Assets directory structure
+        zip.folder("assets").folder("images");
+
+        zip.generateAsync({ type: "blob" }).then(function(content) {
+          if (window.saveAs) {
+            saveAs(content, "VivanX-Shop.zip");
+          } else {
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(content);
+            link.download = "VivanX-Shop.zip";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(link.href);
+          }
+          showToast("🎉 VivanX-Shop.zip downloaded! All 9 files extracted in folders.", "success");
+        }).catch(function(err) {
+          console.error("ZIP Generation failed", err);
+          showToast("Failed to generate ZIP", "warning");
+        });
+      } catch (e) {
+        console.error("Error creating ZIP", e);
+        showToast("Error creating ZIP package", "warning");
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollTotal > 0 ? (window.scrollY / scrollTotal) * 100 : 0;
+      const progressBar = document.getElementById('scrollProgressBar');
+      if (progressBar) progressBar.style.width = `${progress}%`;
+
+      const backBtn = document.getElementById('backToTopBtn');
+      if (backBtn) {
+        if (window.scrollY > 300) {
+          backBtn.classList.remove('opacity-0', 'pointer-events-none');
+        } else {
+          backBtn.classList.add('opacity-0', 'pointer-events-none');
+        }
+      }
+    });
+
+    // Real-time search listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      initCategoryTabs();
+      renderProducts();
+      updateCartUI();
+
+      // Check current hash on initial load
+      const initialHash = window.location.hash.replace('#', '') || 'home';
+      navigateTo(initialHash);
+
+      // Search Inputs
+      const liveSearch = document.getElementById('liveSearchInput');
+      const navSearch = document.getElementById('navbarSearchInput');
+      const mobileSearch = document.getElementById('mobileSearchInput');
+
+      const handleSearch = (val) => {
+        currentSearchQuery = val;
+        if (liveSearch && liveSearch.value !== val) liveSearch.value = val;
+        if (navSearch && navSearch.value !== val) navSearch.value = val;
+        if (mobileSearch && mobileSearch.value !== val) mobileSearch.value = val;
+        
+        // If not on home page, switch to home page
+        const homePage = document.getElementById('page-home');
+        if (homePage && homePage.classList.contains('hidden')) {
+          navigateTo('home');
+        }
+        renderProducts();
+      };
+
+      if (liveSearch) liveSearch.addEventListener('input', (e) => handleSearch(e.target.value));
+      if (navSearch) navSearch.addEventListener('input', (e) => handleSearch(e.target.value));
+      if (mobileSearch) mobileSearch.addEventListener('input', (e) => handleSearch(e.target.value));
+    });
+  </script>
+</body>
+</html>
